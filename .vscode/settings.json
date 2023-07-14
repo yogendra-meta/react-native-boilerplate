@@ -1,0 +1,10 @@
+{
+  // "files.autoSave": "afterDelay",
+  // "files.autoSaveDelay": 1500,
+  "eslint.format.enable": true,
+  "eslint.runtime": "node",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "prettier.printWidth": 100,
+  "editor.tabSize": 2
+}
