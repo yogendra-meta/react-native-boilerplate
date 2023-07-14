@@ -13,10 +13,12 @@ interface Props {
   navigation: NavigationType;
 }
 
-function Login({ navigation }: Props) {
+function Signup({ navigation }: Props) {
   const dispatch = useDispatch<Dispatch>();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
     <WrapperView style={styles.container}>
@@ -24,38 +26,46 @@ function Login({ navigation }: Props) {
         <Image source={require("./images/logo.png")} style={styles.logo} />
         <WrapperTextInput
           style={styles.textInput}
+          placeholder="Name"
+          placeholderTextColor={COLORS.SECONDARY}
+          onChangeText={name => setName(name)}
+        />
+        <WrapperTextInput
+          style={styles.textInput}
+          keyboardType="email-address"
           placeholder="Email"
           placeholderTextColor={COLORS.SECONDARY}
           onChangeText={email => setEmail(email)}
         />
         <WrapperTextInput
           style={styles.textInput}
-          placeholder="Password"
+          placeholder="New Password"
           placeholderTextColor={COLORS.SECONDARY}
-          secureTextEntry={true}
           onChangeText={password => setPassword(password)}
+          secureTextEntry
         />
-
-        <TouchableOpacity>
-          <WrapperText style={styles.forgot_button}>
-            Forgot Password?
-          </WrapperText>
-        </TouchableOpacity>
+        <WrapperTextInput
+          style={styles.textInput}
+          placeholder="Confirm Password"
+          placeholderTextColor={COLORS.SECONDARY}
+          onChangeText={password => setConfirmPassword(password)}
+          secureTextEntry
+        />
 
         <TouchableOpacity
           style={styles.loginBtn}
           onPress={() => dispatch(fetchAuthUser())}
         >
-          <WrapperText>LOGIN</WrapperText>
+          <WrapperText>SIGN UP</WrapperText>
         </TouchableOpacity>
 
-        <WrapperText style={styles.signUpTextWrapper}>
-          Not having an account?{" "}
+        <WrapperText style={styles.loginTextWrapper}>
+          Already have an account?{" "}
           <WrapperText
-            style={styles.signUpText}
-            onPress={() => navigation.navigate("Signup")}
+            style={styles.loginText}
+            onPress={() => navigation.navigate("Login")}
           >
-            Signup
+            Login
           </WrapperText>
         </WrapperText>
       </>
@@ -77,25 +87,23 @@ const styles = StyleSheet.create({
     padding: 10,
     marginLeft: 20,
     width: "100%",
-  },
-  forgot_button: {
-    margin: 10,
-    marginBottom: 25,
+    color: COLORS.SECONDARY,
   },
   loginBtn: {
     width: "70%",
+    marginTop: 20,
     borderRadius: 25,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: COLORS.TERTIARY,
   },
-  signUpTextWrapper: {
+  loginTextWrapper: {
     marginTop: 10,
   },
-  signUpText: {
+  loginText: {
     color: COLORS.TERTIARY,
   },
 });
 
-export default Login;
+export default Signup;

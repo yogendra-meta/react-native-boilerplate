@@ -19,9 +19,11 @@ import store from "./src/store";
 import { useSelector } from "react-redux";
 import { RootState } from "./src";
 import WrapperText from "./src/components/common/Text";
+import Signup from "./src/screens/Signup";
 
 export type StackParamList = {
   Login: undefined;
+  Signup: undefined;
   Dashboard: undefined;
 };
 
@@ -64,7 +66,7 @@ const Routes = () => {
   return (
     <SafeAreaProvider>
       <StatusBar
-        barStyle={isDarkMode ? "light-content" : "dark-content"}
+        barStyle={isDarkMode ? "dark-content" : "light-content"}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <NavigationContainer>
@@ -79,11 +81,18 @@ const Routes = () => {
               options={{ title: "Dashboard" }}
             />
           ) : (
-            <Stack.Screen
-              name="Login"
-              component={Login}
-              options={{ title: "Login" }}
-            />
+            <>
+              <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{ title: "Login" }}
+              />
+              <Stack.Screen
+                name="Signup"
+                component={Signup}
+                options={{ title: "Signup" }}
+              />
+            </>
           )}
         </Stack.Navigator>
       </NavigationContainer>
